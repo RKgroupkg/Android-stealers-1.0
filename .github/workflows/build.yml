@@ -11,9 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Add Buildozer repository (if needed)
+        run: |
+          sudo add-apt-repository ppa:buildozer/stable  # Replace with appropriate repository if needed
+          sudo apt-get update
+
       - name: Install Buildozer and AIDL
         run: |
-          sudo apt-get update
           sudo apt-get install -y buildozer aidl
 
       - name: Cache Buildozer global directory
