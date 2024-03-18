@@ -36,6 +36,10 @@ jobs:
           python3 -m pip install cython==0.29.21  # Install specific version of Cython
           python3 -m pip install buildozer
           
+      - name: Install Aidl
+        run: |
+          sudo apt-get install -y aidl
+          
       - name: Build APK
         run: buildozer android debug
         
