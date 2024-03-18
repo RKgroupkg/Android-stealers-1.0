@@ -33,7 +33,5 @@ jobs:
             python3-setuptools \
             zlib1g-dev
           python3 -m pip install --upgrade pip wheel
-          python3 -m pip install buildozer
-          
-      - name: Build APK
-        run: buildozer android debug
+          python3 -m pip install cython==0.29.21  # Install specific version of Cython
+          python3 -m pip install bui
