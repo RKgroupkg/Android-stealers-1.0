@@ -36,12 +36,17 @@ jobs:
           python3 -m pip install cython==0.29.21  # Install specific version of Cython
           python3 -m pip install buildozer
           
-      - name: Install libstdc++6
-        run: sudo apt-get install -y libstdc++6
-        
-      - name: Install Aidl
-        run: sudo apt-get install -y aidl
-        
+      - name: Download Android SDK tools
+        run: |
+          wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+          unzip commandlinetools-linux-6858069_latest.zip -d android-sdk
+          export ANDROID_HOME=$PWD/android-sdk
+          export PATH=$PATH:$ANDROID_HOME/tools/bin
+          
+      - name: Copy Aidl binary
+        run: |
+          cp /usr/bin/aidl $ANDROID_HOME/build-tools/*/aidl
+          
       - name: Build APK
         run: buildozer android debug
         
